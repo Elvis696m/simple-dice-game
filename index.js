@@ -5,9 +5,9 @@ document.getElementById('myButton').onclick=function(){
 let guess=document.getElementById('guessField').value
 guesses+=1
 if(guess==answer){
-    alert('You won!')
+   console.log('You won!')
 }
 else{
-    alert('Try again!')
+   console.log('Try again!')
 }
 }
