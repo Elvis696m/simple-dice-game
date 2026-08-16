@@ -7,6 +7,9 @@ guesses+=1
 if(guess==answer){
     alert('You won!')
 }
+else if(guess>6){
+    alert('Out of Range!')
+}
 else if(guesses>=3){
     alert('You are Out.Try harder next time!')
 }
