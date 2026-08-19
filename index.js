@@ -15,17 +15,15 @@ document.getElementById('myButton').onclick = function () {
         document.getElementById('score').innerHTML = score
         alert('You won!')
     }
-    if (score < 0) {
-        score = 0
-    }
     else if (guess > 6) {
         alert('Out of Range!')
     }
     else if (guesses >= 3) {
         alert('You are Out.Try harder next time!')
+        return
     }
 
-    else {
+    else  {
         score -= 2
     }
     if(score<0) 
