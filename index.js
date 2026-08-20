@@ -3,7 +3,7 @@ setTimeout(function () {
 }, 2000)
 let answer = Math.floor(Math.random() * 6 + 1);
 guesses = 0
-let score = 0
+let score =  0
 
 document.getElementById('score').innerHTML = score
 
@@ -14,6 +14,7 @@ document.getElementById('myButton').onclick = function () {
         score += 10
         document.getElementById('score').innerHTML = score
         alert('You won!')
+        return
     }
     else if (guess > 6) {
         alert('Out of Range!')
