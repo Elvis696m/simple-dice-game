@@ -18,6 +18,7 @@ document.getElementById('myButton').onclick = function () {
     }
     else if (guess > 6) {
         alert('Out of Range!')
+        return
     }
     else if (guesses >= 3) {
         alert('You are Out.Try harder next time!')
