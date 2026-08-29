@@ -3,12 +3,14 @@ setTimeout(function () {
 }, 2000)
 let answer = Math.floor(Math.random() * 6 + 1);
 guesses = 0
-let score =  0
-
+let score = 0
+let userguesses = []
 document.getElementById('score').innerHTML = score
 
 document.getElementById('myButton').onclick = function () {
     let guess = document.getElementById('guessField').value
+    userguesses.push(guess);
+    document.getElementById('playerHistory').innerHTML = userguesses;
     guesses += 1
     if (guess == answer) {
         score += 10
@@ -25,14 +27,14 @@ document.getElementById('myButton').onclick = function () {
         return
     }
 
-    else  {
+    else {
         score -= 2
     }
-    if(score<0) 
-        score=0
+    if (score < 0)
+        score = 0
     {
         alert('Try again!')
-         document.getElementById('score').innerHTML = score
+        document.getElementById('score').innerHTML = score
     }
-    
+
 }
