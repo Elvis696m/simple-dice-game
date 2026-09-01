@@ -3,12 +3,12 @@ setTimeout(function () {
 }, 2000)
 let answer = Math.floor(Math.random() * 6 + 1);
 guesses = 0
-let score = 0
-let userguesses = []
-let wins = 0
-let losses = 0
-let gamesPlayed = 0
-let winRate = 0
+let score = Number(localStorage.getItem('score')) || 0
+let userguesses = JSON.parse(localStorage.getItem('userguesses')) || []
+let wins = Number(localStorage.getItem('wins')) || 0
+let losses = Number(localStorage.getItem('losses')) || 0
+let gamesPlayed = Number(localStorage.getItem('gamesPlayed')) || 0
+let winRate = gamesPlayed > 0 ? wins / gamesPlayed * 100 : 0
 
 document.getElementById('Wins').innerHTML = wins
 document.getElementById('losses').innerHTML = losses
@@ -19,6 +19,9 @@ document.getElementById('score').innerHTML = score
 document.getElementById('myButton').onclick = function () {
     let guess = document.getElementById('guessField').value
     userguesses.push(guess);
+    if (userguesses.length>10)
+    userguesses.shift()
+    localStorage.setItem('userguesses',JSON.stringify(userguesses))
     document.getElementById('playerHistory').innerHTML = userguesses;
     guesses += 1
     if (guess == answer) {
@@ -30,6 +33,9 @@ document.getElementById('myButton').onclick = function () {
         gamesPlayed+=1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
         winRate = wins/gamesPlayed*100
+        localStorage.setItem('score',score)
+        localStorage.setItem('wins',wins)
+        localStorage.setItem('gamesPlayed',gamesPlayed)
         document.getElementById('winRate').innerHTML = winRate + '%'
         return
     }
@@ -44,6 +50,8 @@ document.getElementById('myButton').onclick = function () {
         gamesPlayed+=1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
         winRate = wins/gamesPlayed*100
+        localStorage.setItem('losses',losses)
+        localStorage.setItem('gamesPlayed',gamesPlayed)
         document.getElementById('winRate').innerHTML = winRate + '%'
         return
     }
@@ -54,6 +62,7 @@ document.getElementById('myButton').onclick = function () {
     if (score < 0)
         score = 0
     {
+        localStorage.setItem('score',score)
         alert('Try again!')
         document.getElementById('score').innerHTML = score
     }
