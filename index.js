@@ -32,7 +32,7 @@ document.getElementById('myButton').onclick = function () {
         document.getElementById('Wins').innerHTML = wins
         gamesPlayed+=1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
-        winRate = wins/gamesPlayed*100
+        winRate = Math.floor(wins/gamesPlayed*100)
         localStorage.setItem('score',score)
         localStorage.setItem('wins',wins)
         localStorage.setItem('gamesPlayed',gamesPlayed)
@@ -49,7 +49,7 @@ document.getElementById('myButton').onclick = function () {
         document.getElementById('losses').innerHTML = losses
         gamesPlayed+=1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
-        winRate = wins/gamesPlayed*100
+        winRate = Math.floor(wins/gamesPlayed*100)
         localStorage.setItem('losses',losses)
         localStorage.setItem('gamesPlayed',gamesPlayed)
         document.getElementById('winRate').innerHTML = winRate + '%'
