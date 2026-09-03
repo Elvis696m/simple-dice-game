@@ -19,25 +19,28 @@ document.getElementById('score').innerHTML = score
 document.getElementById('myButton').onclick = function () {
     let guess = document.getElementById('guessField').value
     userguesses.push(guess);
-    if (userguesses.length>10)
-    userguesses.shift()
-    localStorage.setItem('userguesses',JSON.stringify(userguesses))
+    if (userguesses.length > 10)
+        userguesses.shift()
+    localStorage.setItem('userguesses', JSON.stringify(userguesses))
     document.getElementById('playerHistory').innerHTML = userguesses;
     guesses += 1
     if (guess == answer) {
         score += 10
         document.getElementById('score').innerHTML = score
         alert('You won!')
-        wins+=1
+        wins += 1
         document.getElementById('Wins').innerHTML = wins
-        gamesPlayed+=1
+        gamesPlayed += 1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
-        winRate = Math.floor(wins/gamesPlayed*100)
-        localStorage.setItem('score',score)
-        localStorage.setItem('wins',wins)
-        localStorage.setItem('gamesPlayed',gamesPlayed)
+        winRate = Math.floor(wins / gamesPlayed * 100)
+        localStorage.setItem('score', score)
+        localStorage.setItem('wins', wins)
+        localStorage.setItem('gamesPlayed', gamesPlayed)
         document.getElementById('winRate').innerHTML = winRate + '%'
+        document.getElementById('playAgain').style.display = 'inline-block';
+        document.getElementById('myButton').style.display = 'none';
         return
+
     }
     else if (guess > 6) {
         alert('Out of Range!')
@@ -45,14 +48,16 @@ document.getElementById('myButton').onclick = function () {
     }
     else if (guesses >= 3) {
         alert('You are Out.Try harder next time!')
-        losses+=1
+        losses += 1
         document.getElementById('losses').innerHTML = losses
-        gamesPlayed+=1
+        gamesPlayed += 1
         document.getElementById('gamesPlayed').innerHTML = gamesPlayed
-        winRate = Math.floor(wins/gamesPlayed*100)
-        localStorage.setItem('losses',losses)
-        localStorage.setItem('gamesPlayed',gamesPlayed)
+        winRate = Math.floor(wins / gamesPlayed * 100)
+        localStorage.setItem('losses', losses)
+        localStorage.setItem('gamesPlayed', gamesPlayed)
         document.getElementById('winRate').innerHTML = winRate + '%'
+        document.getElementById('playAgain').style.display = 'inline-block';
+        document.getElementById('myButton').style.display = 'none';
         return
     }
 
@@ -62,9 +67,19 @@ document.getElementById('myButton').onclick = function () {
     if (score < 0)
         score = 0
     {
-        localStorage.setItem('score',score)
+        localStorage.setItem('score', score)
         alert('Try again!')
         document.getElementById('score').innerHTML = score
     }
 
+}
+document.getElementById('playAgain').onclick = function () {
+    answer = Math.floor(Math.random() * 6 + 1);
+    guesses = 0;
+
+    document.getElementById('guessField').value = '';
+    document.getElementById('playAgain').style.display = 'none';
+    document.getElementById('myButton').style.display = 'inline-block';
+
+    alert('New game started! ');
 }
