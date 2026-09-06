@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 
@@ -12,13 +11,13 @@
 
 <body align="center">
     <div id="intro">
-        <img src="dice pic.jpeg" width="1024" height="1024"></img>
+        <image src="dice pic.jpeg" width="1024" height="1024"></image>
     </div>
     <div id="game">
 
         <h1 style="background-color: aqua;" align="center">ST.Elvis Dice Roll Club</h1>
         <img src="die.jpeg" width="150" height="150"></img><br><br>
-        <audio src="music.mp3" autoplay autoplay loop></audio>
+        
         <p>score:<span id="score" ></span></p>
         <p>player History:<span id="playerHistory"></span></p>
         <p>Click the button to roll the dice</p>
@@ -37,14 +36,6 @@
 
         </footer>
     </div>
-    <script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(() => console.log("Service Worker registered"))
-            .catch(error => console.log("Service Worker registration failed:", error));
-    }
-</script>
-    
 </body>
 
 </html>
