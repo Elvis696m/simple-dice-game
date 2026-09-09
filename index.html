@@ -4,38 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#0f172a">
+    <title>Dice Roll Club</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body align="center">
+<body>
+
+    <!-- SPLASH SCREEN -->
     <div id="intro">
-        <image src="dice pic.jpeg" width="1024" height="1024"></image>
+        <img src="dice pic.jpeg" alt="Dice Roll Club">
     </div>
+
+    <!-- GAME -->
     <div id="game">
 
-        <h1 style="background-color: aqua;" align="center">ST.Elvis Dice Roll Club</h1>
-        <img src="die.jpeg" width="150" height="150"></img><br><br>
-        
-        <p>score:<span id="score" ></span></p>
-        <p>player History:<span id="playerHistory"></span></p>
-        <p>Click the button to roll the dice</p>
-        <button id="myButton">Roll</button><br><br>
+        <header class="game-header">
+            <h1>Dice Roll Club</h1>
+            <p>Three guesses. One chance to win.</p>
+        </header>
 
-        <input type="text" id="guessField"><br><br>
-        <p>wins:<span id="Wins"></span></p>
-        <p>losses:<span id="losses"></span></p>
-        <p>games Played:<span id="gamesPlayed"></span></p>
-        <p>win Rate:<span id="winRate"></span></p>
-        <button id="playAgain" style="display: none;">Play Again</button>
-        <script src="index.js"></script>
+        <main>
 
-        <footer style="background-color: blue;">
-            <h1>The home of champions!Three guesses you are out</h1>
+            <div class="dice-card">
+                <img src="die.jpeg" alt="Dice" class="dice-image">
+            </div>
 
+            <section class="score-card">
+                <div class="score-label">SCORE</div>
+                <div id="score" class="score-value"></div>
+            </section>
+
+            <section class="history-card">
+                <h2>Player History</h2>
+                <p id="playerHistory"></p>
+            </section>
+
+            <p class="instruction">
+                Choose your number, then roll the dice.
+            </p>
+
+            <input
+                type="number"
+                id="guessField"
+                min="1"
+                max="6"
+                placeholder="Enter 1–6"
+            >
+
+            <button id="myButton" class="roll-button">
+                ROLL DICE
+            </button>
+
+            <section class="stats">
+
+                <div class="stat-card">
+                    <span class="stat-label">WINS</span>
+                    <span id="Wins" class="stat-value"></span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">LOSSES</span>
+                    <span id="losses" class="stat-value"></span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">GAMES</span>
+                    <span id="gamesPlayed" class="stat-value"></span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">WIN RATE</span>
+                    <span id="winRate" class="stat-value"></span>
+                </div>
+
+            </section>
+
+            <button id="playAgain" class="play-again">
+                PLAY AGAIN
+            </button>
+
+        </main>
+
+        <footer>
+            <p>The home of champions</p>
+            <span>Three guesses. You're out.</span>
         </footer>
-    </div>
-</body>
 
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
 </html>
