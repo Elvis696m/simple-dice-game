@@ -308,9 +308,8 @@ footer span {
     }
 }
 /* Dice roll animation */
-
 .dice-roll {
-    animation: diceRoll 0.5s ease;
+    animation: diceRoll 0.8s ease-in-out;
 }
 
 @keyframes diceRoll {
@@ -318,16 +317,20 @@ footer span {
         transform: rotate(0deg) scale(1);
     }
 
-    25% {
-        transform: rotate(90deg) scale(1.08);
+    20% {
+        transform: rotate(90deg) scale(1.15);
     }
 
-    50% {
-        transform: rotate(180deg) scale(1);
+    40% {
+        transform: rotate(180deg) scale(0.9);
     }
 
-    75% {
-        transform: rotate(270deg) scale(1.08);
+    60% {
+        transform: rotate(270deg) scale(1.15);
+    }
+
+    80% {
+        transform: rotate(360deg) scale(0.95);
     }
 
     100% {
