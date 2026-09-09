@@ -16,6 +16,10 @@ document.getElementById('gamesPlayed').innerHTML = gamesPlayed
 document.getElementById('winRate').innerHTML = winRate + '%'
 document.getElementById('score').innerHTML = score
 document.getElementById('myButton').onclick = function () {
+    let dice = document.getElementById('diceImage')
+dice.classList.remove('dice-roll')
+void dice.offsetWidth
+dice.classList.add('dice-roll')
     let guess = Number(document.getElementById('guessField').value)
 
     if (!guess || guess < 1 || guess > 6) {
