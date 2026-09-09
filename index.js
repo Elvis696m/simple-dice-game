@@ -15,9 +15,16 @@ document.getElementById('losses').innerHTML = losses
 document.getElementById('gamesPlayed').innerHTML = gamesPlayed
 document.getElementById('winRate').innerHTML = winRate + '%'
 document.getElementById('score').innerHTML = score
-
 document.getElementById('myButton').onclick = function () {
-    let guess = document.getElementById('guessField').value
+    let guess = Number(document.getElementById('guessField').value)
+
+    if (!guess || guess < 1 || guess > 6) {
+        alert('Please enter a number from 1 to 6!')
+        return
+    }
+
+    userguesses.push(guess);
+
     userguesses.push(guess);
     if (userguesses.length > 10)
         userguesses.shift()
