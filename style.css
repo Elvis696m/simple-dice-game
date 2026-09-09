@@ -309,7 +309,7 @@ footer span {
 }
 /* Dice roll animation */
 .dice-roll {
-    animation: diceRoll 0.8s ease-in-out;
+    animation: diceRoll 1.5s ease-in-out;
 }
 
 @keyframes diceRoll {
