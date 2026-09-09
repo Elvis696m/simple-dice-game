@@ -337,3 +337,18 @@ footer span {
         transform: rotate(360deg) scale(1);
     }
 }
+#guessField {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#guessField::placeholder {
+    color: #64748b;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+#guessField::-webkit-inner-spin-button,
+#guessField::-webkit-outer-spin-button {
+    opacity: 1;
+}
