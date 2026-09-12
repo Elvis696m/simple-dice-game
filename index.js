@@ -28,7 +28,7 @@ void dice.offsetWidth
 dice.classList.add('dice-roll')
     userguesses.push(guess);
 
-    userguesses.push(guess);
+    
     if (userguesses.length > 10)
         userguesses.shift()
     localStorage.setItem('userguesses', JSON.stringify(userguesses))
