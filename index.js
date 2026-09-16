@@ -9,7 +9,6 @@ let wins = Number(localStorage.getItem('wins')) || 0
 let losses = Number(localStorage.getItem('losses')) || 0
 let gamesPlayed = Number(localStorage.getItem('gamesPlayed')) || 0
 let winRate = gamesPlayed > 0 ? wins / gamesPlayed * 100 : 0
-
 document.getElementById('Wins').innerHTML = wins
 document.getElementById('losses').innerHTML = losses
 document.getElementById('gamesPlayed').innerHTML = gamesPlayed
