@@ -47,7 +47,6 @@ dice.classList.add('dice-roll')
         document.getElementById('playAgain').style.display = 'inline-block';
         document.getElementById('myButton').style.display = 'none';
         return
-
     }
     else if (guess > 6) {
         alert('Out of Range!')
