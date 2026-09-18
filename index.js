@@ -16,7 +16,6 @@ document.getElementById('winRate').innerHTML = winRate + '%'
 document.getElementById('score').innerHTML = score
 document.getElementById('myButton').onclick = function () {
     let guess = Number(document.getElementById('guessField').value)
-
     if (!guess || guess < 1 || guess > 6) {
         alert('Please enter a number from 1 to 6!')
         return
@@ -77,16 +76,13 @@ dice.classList.add('dice-roll')
         alert('Try again!')
         document.getElementById('score').innerHTML = score
     }
-
 }
 document.getElementById('playAgain').onclick = function () {
     answer = Math.floor(Math.random() * 6 + 1);
     guesses = 0;
-
     document.getElementById('guessField').value = '';
     document.getElementById('playAgain').style.display = 'none';
     document.getElementById('myButton').style.display = 'inline-block';
-
     alert('New game started! ');
 }
 if ("serviceWorker" in navigator) {
