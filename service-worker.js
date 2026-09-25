@@ -1,4 +1,3 @@
-
 const CACHE_NAME = "dice-game-v2";
 
 const FILES_TO_CACHE = [
