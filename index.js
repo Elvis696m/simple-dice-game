@@ -24,11 +24,14 @@ let dice = document.getElementById('diceImage')
 dice.classList.remove('dice-roll')
 void dice.offsetWidth
 dice.classList.add('dice-roll')
-    userguesses.push(guess);
-    if (userguesses.length > 10)
-        userguesses.shift()
-    localStorage.setItem('userguesses', JSON.stringify(userguesses))
-    document.getElementById('playerHistory').innerHTML = userguesses;
+if (userguesses.length >= 10) {
+    userguesses.shift();
+}
+
+userguesses.push(guess);
+
+localStorage.setItem('userguesses', JSON.stringify(userguesses));
+document.getElementById('playerHistory').innerHTML = userguesses.join(', ');
     guesses += 1
     if (guess == answer) {
         score += 10
