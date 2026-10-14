@@ -95,3 +95,10 @@ if ("serviceWorker" in navigator) {
             .catch(error => console.log("Service worker failed:", error));
     });
 }
+//
+let correctAnswers = [];
+let computerAnswer = Math.floor(Math.random() * 6) + 1;
+
+correctAnswers.push(computerAnswer);
+
+console.log(correctAnswers); this will be added soon
