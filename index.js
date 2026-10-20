@@ -1,6 +1,17 @@
+let userName = localStorage.getItem('userName');
+if (userName === null) {
+    userName = window.prompt('Enter your username.');
+    localStorage.setItem('userName', userName);
+}
+document.getElementById('welcome').innerHTML = `Welcome back, ${userName}!`;
+setTimeout(function () {
+    document.getElementById('welcome').style.display = 'none';
+}, 2000);
+
 setTimeout(function () {
     document.getElementById('intro').style.display = 'none';
 }, 2000)
+
 let answer = Math.floor(Math.random() * 6 + 1);
 guesses = 0
 let score = Number(localStorage.getItem('score')) || 0
@@ -96,9 +107,8 @@ if ("serviceWorker" in navigator) {
     });
 }
 //
-let correctAnswers = [];
-let computerAnswer = Math.floor(Math.random() * 6) + 1;
+//let correctAnswers = [];
+//let computerAnswer = Math.floor(Math.random() * 6) + 1;
 
-correctAnswers.push(computerAnswer);
-
-console.log(correctAnswers); this will be added soon
+//correctAnswers.push(computerAnswer);
+//console.log(correctAnswers); this will be added soon
