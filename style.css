@@ -1,21 +1,6 @@
-/* =========================
-   SPLASH SCREEN
-   ========================= */
-
-#intro {
-    width: 100vw;
-    height: 100vh;
-}
-
-#intro img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
 /* =========================
-   MAIN GAME
+   GENERAL SETTINGS
    ========================= */
 
 * {
@@ -38,10 +23,35 @@ body {
 
 
 /* =========================
-   GAME CONTAINER
+   SPLASH SCREEN
+   ========================= */
+
+#intro {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #0f172a;
+}
+
+#intro img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================
+   MAIN GAME
    ========================= */
 
 #game {
+    display: none;
     width: 100%;
     max-width: 520px;
     min-height: 100vh;
@@ -66,7 +76,16 @@ body {
     letter-spacing: 0.5px;
 }
 
-.game-header p {
+/* Welcome message under the title */
+#welcomeMessage {
+    margin: 8px 0 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #38bdf8;
+    overflow-wrap: anywhere;
+}
+
+.game-header p:not(#welcomeMessage) {
     margin: 8px 0 0;
     font-size: 15px;
     color: #cbd5e1;
@@ -88,6 +107,41 @@ body {
     width: 150px;
     height: 150px;
     object-fit: contain;
+}
+
+
+/* =========================
+   DICE ROLL ANIMATION
+   ========================= */
+
+.dice-roll {
+    animation: diceRoll 1.5s ease-in-out;
+}
+
+@keyframes diceRoll {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    20% {
+        transform: rotate(90deg) scale(1.15);
+    }
+
+    40% {
+        transform: rotate(180deg) scale(0.9);
+    }
+
+    60% {
+        transform: rotate(270deg) scale(1.15);
+    }
+
+    80% {
+        transform: rotate(360deg) scale(0.95);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
 }
 
 
@@ -118,7 +172,7 @@ body {
 
 
 /* =========================
-   HISTORY
+   PLAYER HISTORY
    ========================= */
 
 .history-card {
@@ -155,7 +209,7 @@ body {
 
 
 /* =========================
-   INPUT
+   GUESS INPUT
    ========================= */
 
 #guessField {
@@ -167,6 +221,8 @@ body {
     background: #f8fafc;
     color: #0f172a;
     font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-align: center;
     outline: none;
     margin-bottom: 12px;
@@ -174,6 +230,17 @@ body {
 
 #guessField:focus {
     border-color: #38bdf8;
+}
+
+#guessField::placeholder {
+    color: #64748b;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+#guessField::-webkit-inner-spin-button,
+#guessField::-webkit-outer-spin-button {
+    opacity: 1;
 }
 
 
@@ -240,7 +307,7 @@ body {
    ========================= */
 
 .play-again {
-    display: block;
+    display: none;
     width: 100%;
     min-height: 52px;
     margin-top: 18px;
@@ -250,6 +317,7 @@ body {
     color: #38bdf8;
     font-size: 16px;
     font-weight: 800;
+    cursor: pointer;
 }
 
 
@@ -283,7 +351,6 @@ footer span {
    ========================= */
 
 @media (max-width: 360px) {
-
     #game {
         padding-left: 14px;
         padding-right: 14px;
@@ -307,48 +374,4 @@ footer span {
         margin-right: -14px;
     }
 }
-/* Dice roll animation */
-.dice-roll {
-    animation: diceRoll 1.5s ease-in-out;
-}
 
-@keyframes diceRoll {
-    0% {
-        transform: rotate(0deg) scale(1);
-    }
-
-    20% {
-        transform: rotate(90deg) scale(1.15);
-    }
-
-    40% {
-        transform: rotate(180deg) scale(0.9);
-    }
-
-    60% {
-        transform: rotate(270deg) scale(1.15);
-    }
-
-    80% {
-        transform: rotate(360deg) scale(0.95);
-    }
-
-    100% {
-        transform: rotate(360deg) scale(1);
-    }
-}
-#guessField {
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-#guessField::placeholder {
-    color: #64748b;
-    font-weight: 400;
-    letter-spacing: 0;
-}
-
-#guessField::-webkit-inner-spin-button,
-#guessField::-webkit-outer-spin-button {
-    opacity: 1;
-}
