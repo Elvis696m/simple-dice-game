@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f172a">
+
     <title>Dice Roll Club</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <!-- SPLASH SCREEN -->
     <div id="intro">
         <img src="dice pic.jpeg" alt="Dice Roll Club">
     </div>
-    <div id="welcome">welcome</div>
+
     <!-- GAME -->
     <div id="game">
+
         <header class="game-header">
-            <h1>Dice Roll Club</h1>
-            <p>Three guesses. One chance to win.</p>
-        </header>
+    <h1>Dice Roll Club</h1>
+
+    <p id="welcomeMessage"></p>
+
+    <p>Three guesses. One chance to win.</p>
+</header>
+
         <main>
+
+            <!-- DICE -->
             <div class="dice-card">
-             <img src="die.jpeg" alt="Dice" class="dice-image" id="diceImage">  
+                <img
+                    src="die.jpeg"
+                    alt="Dice"
+                    class="dice-image"
+                    id="diceImage"
+                >
             </div>
+
+            <!-- SCORE -->
             <section class="score-card">
                 <div class="score-label">SCORE</div>
                 <div id="score" class="score-value"></div>
             </section>
+
+            <!-- PLAYER HISTORY -->
             <section class="history-card">
                 <h2>Player History</h2>
                 <p id="playerHistory"></p>
             </section>
+
             <p class="instruction">
                 Choose your number, then roll the dice.
             </p>
+
+            <!-- GUESS INPUT -->
             <input
                 type="number"
                 id="guessField"
@@ -42,20 +66,24 @@
                 placeholder="Enter 1–6"
             >
 
+            <!-- ROLL BUTTON -->
             <button id="myButton" class="roll-button">
                 ROLL DICE
             </button>
 
+            <!-- STATISTICS -->
             <section class="stats">
 
                 <div class="stat-card">
                     <span class="stat-label">WINS</span>
                     <span id="Wins" class="stat-value"></span>
                 </div>
+
                 <div class="stat-card">
                     <span class="stat-label">LOSSES</span>
                     <span id="losses" class="stat-value"></span>
                 </div>
+
                 <div class="stat-card">
                     <span class="stat-label">GAMES</span>
                     <span id="gamesPlayed" class="stat-value"></span>
@@ -68,12 +96,14 @@
 
             </section>
 
+            <!-- PLAY AGAIN -->
             <button id="playAgain" class="play-again">
                 PLAY AGAIN
             </button>
 
         </main>
 
+        <!-- FOOTER -->
         <footer>
             <p>The home of champions</p>
             <span>Three guesses. You're out.</span>
