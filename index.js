@@ -1,77 +1,72 @@
 
 // ========================================
-// USERNAME
+// 1. USERNAME
 // ========================================
 
-let userName = localStorage.getItem('userName');
+let userName = localStorage.getItem("userName");
 
 
 // ========================================
-// SPLASH SCREEN
+// 2. SPLASH SCREEN AND WELCOME MESSAGE
 // ========================================
 
-const intro = document.getElementById('intro');
-const game = document.getElementById('game');
+const intro = document.getElementById("intro");
+const game = document.getElementById("game");
+const welcomeMessage = document.getElementById("welcomeMessage");
 
-intro.style.display = 'flex';
-game.style.display = 'none';
+// Display splash screen first
+intro.style.display = "flex";
+game.style.display = "none";
 
+// Wait 5 seconds before displaying the game
 setTimeout(function () {
 
     // Hide splash screen
-    intro.style.display = 'none';
+    intro.style.display = "none";
 
-    // Ask for username only on the first visit
+    // Ask for username only if one has not been saved
     if (!userName || !userName.trim()) {
 
-        userName = prompt('Enter your username:');
+        userName = prompt("Enter your username:");
 
         if (!userName || !userName.trim()) {
-            userName = 'Player';
+            userName = "Player";
         }
 
         userName = userName.trim();
 
-        localStorage.setItem('userName', userName);
+        localStorage.setItem("userName", userName);
     }
 
-    // Display welcome message under the game title
-    const welcomeMessage = document.getElementById('welcomeMessage');
-
-    if (welcomeMessage) {
-        welcomeMessage.textContent =
-            `Welcome back , ${userName}!`;
-    } else {
-        console.error(
-            'Welcome message element not found! Check index.html for id="welcomeMessage".'
-        );
-    }
+    // Display welcome message beneath the title
+    welcomeMessage.textContent =
+        `Welcome back, ${userName}!`;
 
     // Show the game
-    game.style.display = 'block';
+    game.style.display = "block";
 
 }, 3000);
 
 
 // ========================================
-// GAME VARIABLES
+// 3. GAME VARIABLES
 // ========================================
 
 let answer = Math.floor(Math.random() * 6) + 1;
 
 let guesses = 0;
 
-let score = Number(localStorage.getItem('score')) || 0;
+let score = Number(localStorage.getItem("score")) || 0;
 
 let userguesses =
-    JSON.parse(localStorage.getItem('userguesses')) || [];
+    JSON.parse(localStorage.getItem("userguesses")) || [];
 
-let wins = Number(localStorage.getItem('wins')) || 0;
+let wins = Number(localStorage.getItem("wins")) || 0;
 
-let losses = Number(localStorage.getItem('losses')) || 0;
+let losses = Number(localStorage.getItem("losses")) || 0;
 
 let gamesPlayed =
-    Number(localStorage.getItem('gamesPlayed')) || 0;
+    Number(localStorage.getItem("gamesPlayed")) || 0;
 
 let winRate = gamesPlayed > 0
     ? Math.floor((wins / gamesPlayed) * 100)
@@ -79,50 +74,50 @@ let winRate = gamesPlayed > 0
 
 
 // ========================================
-// DISPLAY SAVED STATISTICS
+// 4. DISPLAY SAVED STATISTICS
 // ========================================
 
-document.getElementById('Wins').textContent = wins;
+document.getElementById("Wins").textContent = wins;
 
-document.getElementById('losses').textContent = losses;
+document.getElementById("losses").textContent = losses;
 
-document.getElementById('gamesPlayed').textContent = gamesPlayed;
+document.getElementById("gamesPlayed").textContent = gamesPlayed;
 
-document.getElementById('winRate').textContent = winRate + '%';
+document.getElementById("winRate").textContent = winRate + "%";
 
-document.getElementById('score').textContent = score;
+document.getElementById("score").textContent = score;
 
-document.getElementById('playerHistory').textContent =
-    userguesses.join(', ');
+document.getElementById("playerHistory").textContent =
+    userguesses.join(", ");
 
 
 // ========================================
-// ROLL DICE BUTTON
+// 5. ROLL DICE BUTTON
 // ========================================
 
-document.getElementById('myButton').onclick = function () {
+document.getElementById("myButton").onclick = function () {
 
-    let guess = Number(
-        document.getElementById('guessField').value
+    const guess = Number(
+        document.getElementById("guessField").value
     );
 
-    // Validate the guess
-    if (!guess || guess < 1 || guess > 6) {
-        alert('Please enter a number from 1 to 6!');
+    // Validate the player's guess
+    if (!Number.isInteger(guess) || guess < 1 || guess > 6) {
+        alert("Please enter a number from 1 to 6!");
         return;
     }
 
-    // Dice animation
-    let dice = document.getElementById('diceImage');
+    // Animate the dice
+    const dice = document.getElementById("diceImage");
 
-    dice.classList.remove('dice-roll');
+    dice.classList.remove("dice-roll");
 
     void dice.offsetWidth;
 
-    dice.classList.add('dice-roll');
+    dice.classList.add("dice-roll");
 
 
-    // Save the latest 10 guesses
+    // Save the last 10 guesses
     if (userguesses.length >= 10) {
         userguesses.shift();
     }
@@ -130,83 +125,105 @@ document.getElementById('myButton').onclick = function () {
     userguesses.push(guess);
 
     localStorage.setItem(
-        'userguesses',
+        "userguesses",
         JSON.stringify(userguesses)
     );
 
-    document.getElementById('playerHistory').textContent =
-        userguesses.join(', ');
+    document.getElementById("playerHistory").textContent =
+        userguesses.join(", ");
 
 
+    // Count the guess
     guesses++;
 
 
-    // ========================================
-    // WIN
-    // ========================================
+    // ====================================
+    // PLAYER WINS
+    // ====================================
 
     if (guess === answer) {
 
         score += 10;
+
         wins++;
+
         gamesPlayed++;
 
         winRate = Math.floor((wins / gamesPlayed) * 100);
 
-        localStorage.setItem('score', score);
-        localStorage.setItem('wins', wins);
-        localStorage.setItem('gamesPlayed', gamesPlayed);
+        // Save statistics
+        localStorage.setItem("score", score);
 
-        document.getElementById('score').textContent = score;
-        document.getElementById('Wins').textContent = wins;
-        document.getElementById('gamesPlayed').textContent = gamesPlayed;
-        document.getElementById('winRate').textContent = winRate + '%';
+        localStorage.setItem("wins", wins);
 
-        alert('You won! ');
+        localStorage.setItem("gamesPlayed", gamesPlayed);
 
-        document.getElementById('playAgain').style.display =
-            'inline-block';
+        // Update the screen
+        document.getElementById("score").textContent = score;
 
-        document.getElementById('myButton').style.display =
-            'none';
+        document.getElementById("Wins").textContent = wins;
+
+        document.getElementById("gamesPlayed").textContent =
+            gamesPlayed;
+
+        document.getElementById("winRate").textContent =
+            winRate + "%";
+
+        alert("You won! ");
+
+        document.getElementById("playAgain").style.display =
+            "block";
+
+        document.getElementById("myButton").style.display =
+            "none";
 
         return;
     }
 
 
-    // ========================================
-    // LOSE AFTER THREE GUESSES
-    // ========================================
+    // ====================================
+    // PLAYER LOSES AFTER THREE GUESSES
+    // ====================================
 
     if (guesses >= 3) {
 
         losses++;
+
         gamesPlayed++;
 
         winRate = Math.floor((wins / gamesPlayed) * 100);
 
-        localStorage.setItem('losses', losses);
-        localStorage.setItem('gamesPlayed', gamesPlayed);
+        // Save statistics
+        localStorage.setItem("losses", losses);
 
-        document.getElementById('losses').textContent = losses;
-        document.getElementById('gamesPlayed').textContent = gamesPlayed;
-        document.getElementById('winRate').textContent = winRate + '%';
+        localStorage.setItem("gamesPlayed", gamesPlayed);
 
-        alert(`You're out! The correct number was ${answer}.`);
+        // Update the screen
+        document.getElementById("losses").textContent = losses;
 
-        document.getElementById('playAgain').style.display =
-            'inline-block';
+        document.getElementById("gamesPlayed").textContent =
+            gamesPlayed;
 
-        document.getElementById('myButton').style.display =
-            'none';
+        document.getElementById("winRate").textContent =
+            winRate + "%";
+
+        alert(
+            `You're out! The correct number was ${answer}. Try harder next time!`
+        );
+
+        document.getElementById("playAgain").style.display =
+            "block";
+
+        document.getElementById("myButton").style.display =
+            "none";
 
         return;
     }
 
 
-    // ========================================
+    // ====================================
     // INCORRECT GUESS
-    // ========================================
+    // ====================================
 
     score -= 2;
 
@@ -214,53 +231,69 @@ document.getElementById('myButton').onclick = function () {
         score = 0;
     }
 
-    localStorage.setItem('score', score);
+    localStorage.setItem("score", score);
 
-    document.getElementById('score').textContent = score;
+    document.getElementById("score").textContent = score;
 
-    alert(' Try again!');
+    alert("Please Try Again!");
 
 };
 
 
 // ========================================
-// PLAY AGAIN BUTTON
+// 6. PLAY AGAIN BUTTON
 // ========================================
 
-document.getElementById('playAgain').onclick = function () {
+document.getElementById("playAgain").onclick = function () {
 
+    // Generate a new answer
     answer = Math.floor(Math.random() * 6) + 1;
 
+    // Reset guesses
     guesses = 0;
 
-    document.getElementById('guessField').value = '';
+    // Clear the input
+    document.getElementById("guessField").value = "";
 
-    document.getElementById('playAgain').style.display = 'none';
+    // Hide Play Again
+    document.getElementById("playAgain").style.display =
+        "none";
 
-    document.getElementById('myButton').style.display =
-        'inline-block';
+    // Show Roll Dice
+    document.getElementById("myButton").style.display =
+        "block";
 
-    alert('New game started! Good luck! ');
+    alert("New game started!");
 
 };
 
 
 // ========================================
-// SERVICE WORKER
+// 7. SERVICE WORKER REGISTRATION
 // ========================================
 
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
 
-    window.addEventListener('load', function () {
+    window.addEventListener("load", function () {
 
-        navigator.serviceWorker.register('./service-worker.js')
+        navigator.serviceWorker.register("./service-worker.js")
 
-            .then(function () {
-                console.log('Service worker registered!');
+            .then(function (registration) {
+
+                console.log(
+                    "Service worker registered:",
+                    registration.scope
+                );
+
             })
 
             .catch(function (error) {
-                console.log('Service worker failed:', error);
+
+                console.error(
+                    "Service worker registration failed:",
+                    error
+                );
+
             });
 
     });
